@@ -9,22 +9,29 @@ const DashboardPage = () => {
   const [newLink, setNewLink] = useState({ title: "", url: "" })
   const { token } = useContext(AuthContext)
 
-  const authHeader = { headers: { Authorization: `Bearer ${token}` } }
+  // We removed the authHeader from here.
 
   useEffect(() => {
     const fetchLinks = async () => {
+      // Define authHeader right before it's used
+      const authHeader = { headers: { 'Authorization': `Bearer ${token}` } };
       try {
         const response = await axios.get('/api/links', authHeader);
-        setLinks(response.data)
+        setLinks(response.data);
       } catch (error) {
-        console.error("Failed to fetch links", error)
+        console.error('Failed to fetch links', error);
       }
+    };
+
+    if (token) {
+      fetchLinks();
     }
-    fetchLinks()
-  }, [token])
+  }, [token]); // This is correct, useEffect only depends on the token.
 
   const handleAddLink = async (e) => {
     e.preventDefault()
+    // Define authHeader right before it's used
+    const authHeader = { headers: { 'Authorization': `Bearer ${token}` } };
     try {
       const response = await axios.post('/api/links', newLink, authHeader);
       setLinks(response.data)
@@ -35,6 +42,8 @@ const DashboardPage = () => {
   }
 
   const handleDeleteLink = async (linkId) => {
+    // Define authHeader right before it's used
+    const authHeader = { headers: { 'Authorization': `Bearer ${token}` } };
     try {
       await axios.delete(`/api/links/${linkId}`, authHeader);
       setLinks(links.filter((link) => link._id !== linkId))
