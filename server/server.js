@@ -9,14 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/links', require('./routes/links'));
 app.use('/api/profile', require('./routes/profile'));
 
-// Optional root route (fixes "Cannot GET /")
-app.get('/', (req, res) => {
-  res.send('Welcome to the backend API!');
+// Simple test route
+app.get('/api', (req, res) => {
+  res.send('API is working!');
 });
 
 // MongoDB connection
@@ -24,5 +24,5 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully.'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Export app for Vercel serverless function
+// Export the app for Vercel
 module.exports = app;
