@@ -3,6 +3,11 @@
     {
       "source": "/api/:category([^/]+)/:ak([^/]+)",
       "destination": "https://linkfolio-nine.vercel.app/api/:category/:ak"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
+
   ]
 }
