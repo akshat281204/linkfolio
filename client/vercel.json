@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:category([^/]+)",
+      "destination": "https://linkfolio-nine.vercel.app/api/:category/"
+    }
+  ]
+}
