@@ -1,13 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/:category([^/]+)/:ak([^/]+)",
-      "destination": "https://linkfolio-nine.vercel.app/api/:category/:ak"
+      "source": "/api/(.*)",
+      "destination": "https://linkfolio-nine.vercel.app/api/$1"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-
   ]
 }
