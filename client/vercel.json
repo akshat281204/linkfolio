@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/:category([^/]+)",
-      "destination": "https://linkfolio-nine.vercel.app/api/:category/"
+      "source": "/api/:category([^/]+)/:ak([^/]+)",
+      "destination": "https://linkfolio-nine.vercel.app/api/:category/:ak"
     }
   ]
 }
