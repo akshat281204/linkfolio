@@ -6,7 +6,7 @@ const PublicProfilePage = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const { username } = useParams(); // Gets the username from the URL (e.g., /testuser)
+    const { username } = useParams();
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -24,45 +24,37 @@ const PublicProfilePage = () => {
         };
 
         fetchUserProfile();
-    }, [username]); // Re-run this effect if the username in the URL changes
+    }, [username]);
 
     if (loading) {
-        return <div style={{ textAlign: 'center', marginTop: '50px' }}>Loading...</div>;
+        return <div className="text-center text-white mt-20">Loading...</div>;
     }
 
     if (error) {
-        return <div style={{ textAlign: 'center', marginTop: '50px', color: 'red' }}>{error}</div>;
+        return <div className="text-center text-red-300 mt-20">{error}</div>;
     }
 
     return (
-        <div style={{ maxWidth: '600px', margin: '40px auto', textAlign: 'center' }}>
+        <div className="max-w-xl mx-auto py-10 px-4">
             {user && (
-                <>
-                    <h2>@{user.username}</h2>
-                    <p>Check out my links below!</p>
-                    <div className="links-list" style={{ marginTop: '20px' }}>
+                <div className="text-center">
+                    {/* You could add an avatar here later */}
+                    <h2 className="text-3xl font-bold text-white">@{user.username}</h2>
+                    
+                    <div className="mt-8 space-y-4">
                         {user.links.map(link => (
                             <a 
                                 href={link.url} 
                                 key={link._id}
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                style={{
-                                    display: 'block',
-                                    backgroundColor: '#5c67f2',
-                                    color: 'white',
-                                    padding: '15px',
-                                    margin: '10px 0',
-                                    borderRadius: '8px',
-                                    textDecoration: 'none',
-                                    fontWeight: 'bold'
-                                }}
+                                className="block w-full p-4 font-semibold text-center text-indigo-600 bg-white rounded-lg shadow-md hover:scale-105 transition-transform transform"
                             >
                                 {link.title}
                             </a>
                         ))}
                     </div>
-                </>
+                </div>
             )}
         </div>
     );

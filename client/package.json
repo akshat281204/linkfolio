@@ -2,14 +2,19 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://linkfolio-nine.vercel.app/",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^5.0.3"
+    "web-vitals": "^4.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
